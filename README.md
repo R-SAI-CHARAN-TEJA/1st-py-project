@@ -186,9 +186,11 @@ In the future, this project can be improved by adding:
 
 ## 👨‍💻 Author
 
-**Sai Charan Teja**
+**R Sai Charan Teja**
 
-Computer Science Student
+Computer Science(AI -ML) Student
+AT MALLA REDDY COLLEGE OF ENGINEERING HYDERABAD
+BTECH - 2nd YEAR
 
 ---
 
