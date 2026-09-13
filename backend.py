@@ -111,6 +111,41 @@ def search_student(query):
         cursor.close()
         connection.close()
 
+#
+#
+#
+
+def get_all_students():
+
+    connection = get_connection()
+
+    if connection is None:
+        return []
+
+    cursor = connection.cursor()
+
+    try:
+        # Get all students
+        sql = """
+        SELECT student_id, name, age, grade, email
+        FROM students
+        ORDER BY student_id
+        """
+
+        cursor.execute(sql)
+
+        # Get all records
+        students = cursor.fetchall()
+
+        return students
+
+    except Error as e:
+        print("Error getting students:", e)
+        return []
+
+    finally:
+        cursor.close()
+        connection.close()
 
 # ============================================================
 # UPDATE STUDENT
