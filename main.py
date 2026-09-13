@@ -139,3 +139,115 @@ def update_student():
         email
     )
 
+# ============================================================
+# DELETE STUDENT
+# ============================================================
+
+def delete_student():
+
+    student_id = input("Enter student ID to delete: ").strip()
+
+    # Find student first
+    results = backend.search_student(student_id)
+
+    if not results:
+
+        print("Student not found.")
+        return
+
+    student = results[0]
+
+    print_student(student)
+
+    confirm = input(
+        "Are you sure you want to delete this student? (y/n): "
+    ).strip().lower()
+
+    if confirm == "y":
+
+        backend.delete_student(student_id)
+
+    else:
+
+        print("Deletion cancelled.")
+
+
+# ============================================================
+# LIST ALL STUDENTS
+# ============================================================
+
+def list_students():
+
+    students = backend.get_all_students()
+
+    if not students:
+
+        print("No students found.")
+        return
+
+    print(f"\nAll Students ({len(students)} total)")
+
+    for student in students:
+
+        print_student(student)
+
+
+# ============================================================
+# MENU
+# ============================================================
+
+MENU = """
+========== Student Data Manager ==========
+
+1. Add student
+2. Search student
+3. Update student
+4. Delete student
+5. List all students
+6. Exit
+
+===========================================
+"""
+
+
+def main():
+
+    while True:
+
+        print(MENU)
+
+        choice = input("Choose an option (1-6): ").strip()
+
+        if choice == "1":
+
+            add_student()
+
+        elif choice == "2":
+
+            search_student()
+
+        elif choice == "3":
+
+            update_student()
+
+        elif choice == "4":
+
+            delete_student()
+
+        elif choice == "5":
+
+            list_students()
+
+        elif choice == "6":
+
+            print("Goodbye!")
+            break
+
+        else:
+
+            print("Invalid choice. Please select 1-6.")
+
+
+# Start the program
+if __name__ == "__main__":
+    main()
