@@ -16,7 +16,7 @@ def get_connection():
             host="localhost",
             user="root",
             password="Charan",
-            database="student_db"
+            database="student_db" 
         )
 
         return connection

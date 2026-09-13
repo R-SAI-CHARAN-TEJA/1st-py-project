@@ -163,7 +163,7 @@ def delete_student():
         "Are you sure you want to delete this student? (y/n): "
     ).strip().lower()
 
-    if confirm == "y":
+    if confirm == "y": 
 
         backend.delete_student(student_id)
 
