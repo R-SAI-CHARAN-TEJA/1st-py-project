@@ -111,9 +111,9 @@ def search_student(query):
         cursor.close()
         connection.close()
 
-#
-#
-#
+#=============================================================
+# GET ALL STUDENT
+# ============================================================
 
 def get_all_students():
 
@@ -193,5 +193,53 @@ def update_student(student_id, name, age, grade, email):
 
     finally:
 
+        cursor.close()
+        connection.close()
+
+# ============================================================
+# UPDATE STUDENT
+# ============================================================
+
+def delete_student(query):
+    """
+    Delete a student using Student ID OR Student Name.
+    """
+
+    connection = get_connection()
+
+    if connection is None:
+        return False
+
+    cursor = connection.cursor()
+
+    try:
+        # Delete using ID OR Name
+        sql = """
+        DELETE FROM students
+        WHERE student_id = %s
+           OR name = %s
+        """
+
+        # Same search value is checked against both columns
+        values = (query, query)
+
+        cursor.execute(sql, values)
+
+        # Check if anything was deleted
+        if cursor.rowcount == 0:
+            print("No student found with that ID or name.")
+            return False
+
+        # Save the DELETE operation
+        connection.commit()
+
+        print("Student deleted successfully.")
+        return True
+
+    except Error as e:
+        print("Error deleting student:", e)
+        return False
+
+    finally:
         cursor.close()
         connection.close()
